@@ -62,6 +62,7 @@ public class NiconViewerDetail extends JDialog{
 
     private void init() {
         
+        //Obtenemos una instancia de las configuraciones generales del sistema
         niconConf=NiconImageConf.getInstance();
         
         panelAdmin=new JPanel();
@@ -73,7 +74,7 @@ public class NiconViewerDetail extends JDialog{
         btnClose.setBorderPainted(false);
         btnClose.setContentAreaFilled(false);
         btnClose.setToolTipText("Close ");        
-        btnClose.setBounds(520,2, 32, 32);
+        btnClose.setBounds(530,2,20,20);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,7 +82,7 @@ public class NiconViewerDetail extends JDialog{
             }
         });
         
-        title=new JLabel("Información:");
+        title=new JLabel("Información de Imágen:");
         title.setFont(niconConf.getTitleFont());
         title.setBounds(10, 10, 600, 30);
         title.setForeground(niconConf.getTitleColor());
