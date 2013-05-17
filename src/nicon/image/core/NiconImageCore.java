@@ -21,6 +21,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import nicon.image.gui.JNiconImage;
 
 /**
  * esta clase define todos los metodos basicos del sistema para la carga de
@@ -114,6 +115,7 @@ public class NiconImageCore {
             nameFile = imageFile.getParent() + File.separator + name + getExtensionFile(imageFile);
             renameFile = new File(nameFile);
                 if (imageFile.renameTo(renameFile)) {
+                    JNiconImage.setTitleImage(name);
                     state = true;
                 } else {
                     state = false;
