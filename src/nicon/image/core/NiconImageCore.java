@@ -35,6 +35,7 @@ public class NiconImageCore {
     private boolean state;  
     private String nameFile;
     private String extensionFile;
+    private NiconImageData imageData;
 
     /**
      * este contructor inicializa una nueva instancia del ImageCore que brinda
@@ -61,7 +62,7 @@ public class NiconImageCore {
      * 
      * @return File selectedFile
      */
-    public File openFileImage() {
+    public File openImage() {
         fileChooser.setSize(300, 200);
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setFileFilter(filter);
@@ -81,7 +82,7 @@ public class NiconImageCore {
      * 
      * @return File selectedFile (directorio).
      */
-    public File openDirectory() {
+    public File openImageDirectory() {
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         value = fileChooser.showOpenDialog(null);
         
@@ -102,7 +103,7 @@ public class NiconImageCore {
      * @param name
      * @return 
      */
-    public boolean renameFile(File imageFile, String name) {
+    public boolean renameImage(File imageFile, String name) {
         if (imageFile.exists()) {
             nameFile = imageFile.getParent() + File.separator + name + getExtensionFile(imageFile);
             renameFile = new File(nameFile);
@@ -112,6 +113,22 @@ public class NiconImageCore {
                     state = false;
                 }
         } else {
+            state=false;
+        }
+        return state;
+    }
+    
+    /**
+     * Este metodo permite eliminar una imagen del sistema de archivos, recibe
+     * como parametros el archivo que almacena la imagen que sera eliminada.
+     * 
+     * @param file
+     * @return boolean state
+     */
+    public boolean deleteImage(File file){
+        if(file.exists()){
+            state=file.delete();
+        }else{
             state=false;
         }
         return state;
@@ -133,5 +150,20 @@ public class NiconImageCore {
             extensionFile = ".jpg";
         }
         return extensionFile;
+    }
+    
+    /**
+     * Este metodo permite obtener informacion básica de la imágen que esta siendo
+     * vista actualmente, hace uso de NiconImageData para los metaDatos de la 
+     * imagen que será mostrados al usuario en una JDialog.
+     * 
+     * @param file
+     * @return NiconImagedata imageData
+     */
+    public NiconImageData getNiconImageData(File file){
+         imageData=new NiconImageData(file.getName(),
+                                      NiconImageViewer.getWidthImage(),NiconImageViewer.getHeigthImage()
+                                     ,getExtensionFile(file),file.getAbsolutePath(),file.length(),null);
+        return imageData;
     }
 }
