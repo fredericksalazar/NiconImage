@@ -57,7 +57,7 @@ public class JNiconImage extends JFrame implements ActionListener{
     
     private JMenuItem renameFile;
     
-    private JLabel titleImage; 
+    private static JLabel titleImage; 
         
     private JButton openImage;
     private JButton openDirectory;
@@ -176,6 +176,10 @@ public class JNiconImage extends JFrame implements ActionListener{
         getContentPane().add(panelOptions);
         getContentPane().add(panelViewer);
         getContentPane().add(panelTools);        
+    }
+    
+    public static void setTitleImage(String title){
+        titleImage.setText(title);
     }
     
     private void showImage(){       
