@@ -13,7 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import nicon.image.core.NiconImageConf;
+import nicon.image.core.conf.NiconImageConf;
 import nicon.image.core.NiconImageCore;
 
 /**
@@ -72,7 +72,7 @@ public class RenameImageDialog extends JDialog{
                 }
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
                     niconCore=new NiconImageCore();
-                        if(niconCore.renameFile(file, textEditor.getText())){
+                        if(niconCore.renameImage(file, textEditor.getText())){
                             dispose();
                         }
                 }

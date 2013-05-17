@@ -27,10 +27,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import nicon.image.core.FilterImageExtension;
+import nicon.image.core.extensions.FilterImageExtension;
 import nicon.image.core.NiconImageCore;
-import nicon.image.core.NiconImageConf;
+import nicon.image.core.NiconImageData;
 import nicon.image.core.NiconImageViewer;
+import nicon.image.core.conf.NiconImageConf;
 
 /**
  * JNiconImage es la interfaz grafica principal de todo el software de
@@ -44,7 +45,8 @@ public class JNiconImage extends JFrame implements ActionListener{
     
     private JPanel panelTools;
     private JPanel panelTitle;
-    private JPanel panelOptions;    
+    private JPanel panelOptions;   
+    private JPanel containerViewer;
     private NiconImageViewer panelViewer;
     
     private JMenuBar menuBar;
@@ -121,8 +123,12 @@ public class JNiconImage extends JFrame implements ActionListener{
         panelOptions.setBackground(niconConfig.getPanelColor());
         panelOptions.setBounds(900, 0,200, 665);
         
+        containerViewer=new JPanel();
+        containerViewer.setBounds(0, 70, 900, 505);
+        
         panelViewer=new NiconImageViewer();
-        panelViewer.setBounds(0,70,900, 505);
+        panelViewer.setBackground(niconConfig.getPanelColor());
+        panelViewer.setBounds(0,70, 1000, 505);
                 
         panelTools=new JPanel();
         panelTools.setBackground(niconConfig.getPanelColor());
@@ -131,18 +137,21 @@ public class JNiconImage extends JFrame implements ActionListener{
         
         openImage=new JButton();
         openImage.setToolTipText("Permite abrir una nueva imágen desde el disco duro");
-        openImage.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"add.png")));
+        openImage.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"NiconAdd.png")));
         openImage.setBounds(10,15, 60,60);
         openImage.addActionListener(this);
         
         openDirectory=new JButton();
         openDirectory.setToolTipText("Permite abrir un directorio de imagenes");
-        openDirectory.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"NiconDir.png")));
+        openDirectory.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"NiconDirectory.png")));
         openDirectory.setBounds(85, 15, 60, 60);
         openDirectory.addActionListener(this);
         
         viewDetail=new JButton();
+        viewDetail.setToolTipText("Muestra información detallada de la imágen actual");
+        viewDetail.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"Info.png")));
         viewDetail.setBounds(155, 15, 60, 60);
+        viewDetail.addActionListener(this);
         
         nextImage=new JButton();
         nextImage.setToolTipText("Permite mostrar la siguiente imágen");
@@ -170,7 +179,7 @@ public class JNiconImage extends JFrame implements ActionListener{
     }
     
     private void showImage(){       
-        selectedFile = niconImage.openFileImage();
+        selectedFile = niconImage.openImage();
         
             if(selectedFile!=null){
                 titleImage.setText(selectedFile.getName());
@@ -181,7 +190,7 @@ public class JNiconImage extends JFrame implements ActionListener{
     
     private void openDirectory(){ 
         filer= new FilterImageExtension();
-        selectedFile=niconImage.openDirectory();
+        selectedFile=niconImage.openImageDirectory();
         System.out.println("Direcotrio seleccionado: "+selectedFile.getPath());
         listFiles = selectedFile.listFiles(filer);
         System.out.println("Total archivo de imagen cargados: "+listFiles.length);
@@ -218,6 +227,13 @@ public class JNiconImage extends JFrame implements ActionListener{
             index=-1;
         }
     }
+    
+    private void niconDeatilsImage(){
+        NiconImageData imageData=niconImage.getNiconImageData(selectedFile);
+        NiconViewerDetail visor=new NiconViewerDetail(imageData);
+        visor.setLocationRelativeTo(null);
+        visor.setVisible(true);
+    }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -245,6 +261,10 @@ public class JNiconImage extends JFrame implements ActionListener{
         if(ae.getSource()==renameFile){
             RenameImageDialog renameDialog=new RenameImageDialog(selectedFile);
             renameDialog.setVisible(true);
+        }
+        
+        if(ae.getSource()==viewDetail){
+            this.niconDeatilsImage();
         }
         
     }   
