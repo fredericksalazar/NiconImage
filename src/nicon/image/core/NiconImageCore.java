@@ -12,8 +12,14 @@
 
 package nicon.image.core;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -165,5 +171,26 @@ public class NiconImageCore {
                                       NiconImageViewer.getWidthImage(),NiconImageViewer.getHeigthImage()
                                      ,getExtensionFile(file),file.getAbsolutePath(),file.length(),null);
         return imageData;
+    }
+    
+    /**
+     * Este metodo permite agregar un evento a un JDialog que permite que el usuario pueda cerrar dicho
+     * window al presionar la tecla ESCAPE, este metodo puede ser usado desde cualquier tipo de JDialog
+     * e implementa un ActionListener para el manejador de eventos de la ventana, al mismo tiempo
+     * a la v¡JDialog le es asignado un registerKeyBoardAction y le es pasado el escAction para cuando el 
+     * componente sea el poseedor del foco.
+     * 
+     * @param windowDialog 
+     */
+    public static void addEscapeListenerWindowDialog( final JDialog windowDialog) {    
+        ActionListener escAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                windowDialog.dispose();
+            }            
+        };
+        windowDialog.getRootPane().registerKeyboardAction(escAction,
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+            JComponent.WHEN_IN_FOCUSED_WINDOW);        
     }
 }
