@@ -29,6 +29,8 @@ public class NiconImageConf {
     
     private Font  titleFont;
     private Font  textFont;
+    private Font  textItalicFont;
+    
     private String iconsPath;
     
     private static NiconImageConf instance;
@@ -40,6 +42,8 @@ public class NiconImageConf {
       
       titleFont=new Font("Ubuntu",Font.PLAIN,29);    
       textFont=new Font("Ubuntu",Font.PLAIN,16);
+      textItalicFont=new Font("Ubuntu",Font.ITALIC,16);
+      
       iconsPath="/nicon/image/gui/icons/";
     }
 
@@ -62,7 +66,11 @@ public class NiconImageConf {
     public Font getTextFont() {
         return textFont;
     }
-    
+
+    public Font getTextItalicFont() {
+        return textItalicFont;
+    }
+       
     public String getIconsPath() {
         return iconsPath;
     }
