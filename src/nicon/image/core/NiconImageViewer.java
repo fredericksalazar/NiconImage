@@ -40,7 +40,7 @@ public class NiconImageViewer extends JPanel {
      * visor de imagenes, se usa cuando inicia la app o cuando se elimina una
      * imágen del sistema.
      */
-    protected  void loadNiconHome(){
+    public  void loadNiconHome(){
         icon=new ImageIcon(getClass().getResource("/nicon/image/gui/icons/NiconHome.png"));
         image=icon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_FAST);
         

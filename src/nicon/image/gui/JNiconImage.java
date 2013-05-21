@@ -214,6 +214,7 @@ public class JNiconImage extends JFrame implements ActionListener{
                 titleImage.setText(selectedFile.getName());
                 image=new ImageIcon(selectedFile.getPath());
                 panelViewer.setImage(image);
+                panelViewer.cleanNiconViewer();
             }                        
     }
     
@@ -239,7 +240,8 @@ public class JNiconImage extends JFrame implements ActionListener{
                 selectedFile=listFiles[index];
                 titleImage.setText(selectedFile.getName());
                 image=new ImageIcon(selectedFile.getPath());
-                panelViewer.setImage(image);                 
+                panelViewer.setImage(image);  
+                panelViewer.cleanNiconViewer();
             }
         }catch(Exception e ){
             System.err.println("Ocurrio un error al obtener la imagen:\n"+e);
@@ -270,10 +272,16 @@ public class JNiconImage extends JFrame implements ActionListener{
         visor.setVisible(true);
     }
     
+    /**
+     * este es el metodo que permite eliminar un archivo de imagen actual del 
+     * disco duro hace uso de API NiconImageCore para el proceso de eliminacion,
+     * 
+     */
     private void deleteFile(){
         int option = JOptionPane.showConfirmDialog(null, "Esta a punto de eliminar la actual Imágen de su sistema\n ¿Realmente desea Hacerlo?");
             if(option==0){
                 niconImage.deleteImage(selectedFile);
+                panelViewer.loadNiconHome();
             }
     }
 
@@ -310,7 +318,7 @@ public class JNiconImage extends JFrame implements ActionListener{
         }
         
         if(ae.getSource()==viewDetail){
-            this.niconDeatilsImage();
+            niconDeatilsImage();
         }
         
     }   
