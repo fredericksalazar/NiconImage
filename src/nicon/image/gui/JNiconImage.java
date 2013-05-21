@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import nicon.image.core.extensions.FilterImageExtension;
@@ -52,10 +53,11 @@ public class JNiconImage extends JFrame implements ActionListener{
     private JMenuBar menuBar;
     private JMenu menuNicon;
     private JMenu menuEdit;
-    
+       
     private JMenuItem close;
     
     private JMenuItem renameFile;
+    private JMenuItem deleteFile;
     
     private static JLabel titleImage; 
         
@@ -100,10 +102,19 @@ public class JNiconImage extends JFrame implements ActionListener{
         
         menuEdit=new JMenu("Editar");
         
-        renameFile=new JMenuItem("Renombrar");
+        renameFile=new JMenuItem("Cambiar Nombre");
+        renameFile.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"NiconEdit.png")));
+        renameFile.setToolTipText("Permite cambiar el Nombre de la actual Imágen");
         renameFile.addActionListener(this);
         
+        deleteFile=new JMenuItem("Eliminar Imágen");
+        deleteFile.setIcon(new ImageIcon(getClass().getResource(niconConfig.getIconsPath()+"NiconDelete.png")));
+        deleteFile.setToolTipText("Eliminar la actual imágen del disco");
+        deleteFile.addActionListener(this);
+        
         menuEdit.add(renameFile);
+        menuEdit.addSeparator();
+        menuEdit.add(deleteFile);
         
         menuBar.add(menuNicon);
         menuBar.add(menuEdit);
@@ -178,10 +189,24 @@ public class JNiconImage extends JFrame implements ActionListener{
         getContentPane().add(panelTools);        
     }
     
+    /**
+     * Este metodo permite Ajustar el actual titulo de la Imagen en el visor de
+     * imagenes principal, puede ser accedido desde cualquier prte del programa
+     * para su edicion.
+     * 
+     * @param title 
+     */
     public static void setTitleImage(String title){
         titleImage.setText(title);
     }
     
+    /**
+     * Este metodo es el encargdo de abrir y obtener la imagen del archivo que
+     * el usuario ha intentado abrir y mostrarlo en el visor de imagenes de 
+     * NiconImage, Hace uso del NiconImageCore, este metodo solo permite cargar
+     * y mostrar una sola Imagen.
+     * 
+     */
     private void showImage(){       
         selectedFile = niconImage.openImage();
         
@@ -192,6 +217,12 @@ public class JNiconImage extends JFrame implements ActionListener{
             }                        
     }
     
+    /**
+     * Este metodo es el encargado de obtener un directorio y cargar todas
+     * sus imagenes en una lista de objetos que serán cargados en el visor de
+     * Imágenes, el usuario podrá cambiar de imágen hacia adelante o atras del
+     * vector con los comandos next and previos.
+     */
     private void openDirectory(){ 
         filer= new FilterImageExtension();
         selectedFile=niconImage.openImageDirectory();
@@ -238,6 +269,13 @@ public class JNiconImage extends JFrame implements ActionListener{
         visor.setLocationRelativeTo(null);
         visor.setVisible(true);
     }
+    
+    private void deleteFile(){
+        int option = JOptionPane.showConfirmDialog(null, "Esta a punto de eliminar la actual Imágen de su sistema\n ¿Realmente desea Hacerlo?");
+            if(option==0){
+                niconImage.deleteImage(selectedFile);
+            }
+    }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -265,6 +303,10 @@ public class JNiconImage extends JFrame implements ActionListener{
         if(ae.getSource()==renameFile){
             RenameImageDialog renameDialog=new RenameImageDialog(selectedFile);
             renameDialog.setVisible(true);
+        }
+        
+        if(ae.getSource()==deleteFile){
+            deleteFile();
         }
         
         if(ae.getSource()==viewDetail){
