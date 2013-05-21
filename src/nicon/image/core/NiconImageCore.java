@@ -12,10 +12,12 @@
 
 package nicon.image.core;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.net.URI;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -195,4 +197,34 @@ public class NiconImageCore {
             KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
             JComponent.WHEN_IN_FOCUSED_WINDOW);        
     }
+    
+    /**
+     * Este metodo permite abrir en el navegador web predeterminado del sistema
+     * operativo los enlaces a las páginas oficiales de NiconSystem en 
+     * Facebook y demas servicios, recibe como parametro el id del sitio web
+     * al que accederá y hace el llamado al OS.
+     * 
+     * @param site 
+     */
+    public static void openNiconURL(int site){
+        if(java.awt.Desktop.isDesktopSupported()){
+            if(site==0){
+                try{
+                    Desktop dk = Desktop.getDesktop();
+                    dk.browse(new URI("https://www.facebook.com/NiconSystem"));
+                }catch(Exception e){
+                    System.out.println("Error al abrir URL: "+e.getMessage());
+                }
+            }
+            if(site==1){
+                try{
+                    Desktop dk = Desktop.getDesktop();
+                    dk.browse(new URI("http://niconsystem.wordpress.com/productos-y-servicios/niconimage/"));
+                }catch(Exception e){
+                    System.out.println("Error al abrir URL: "+e.getMessage());
+                }
+            }
+        }  
+    }
+    
 }
