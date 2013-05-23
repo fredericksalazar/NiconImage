@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="primary" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass, primaryAnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="nicon.image.main.NiconImageFXMLController">
+  <children>
+    <MenuBar prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </children>
+  <stylesheets>
+    <URL value="@../guifx/NiconImageStyle.css" />
+  </stylesheets>
+</AnchorPane>
