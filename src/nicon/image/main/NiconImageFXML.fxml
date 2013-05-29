@@ -11,8 +11,9 @@
   <children>
     <MenuBar prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="NiconImage">
           <items>
+            <MenuItem mnemonicParsing="false" onAction="#OpenImage" text="Abrir Imagen..." />
             <MenuItem mnemonicParsing="false" text="Close" />
           </items>
         </Menu>
@@ -23,6 +24,7 @@
         </Menu>
       </menus>
     </MenuBar>
+    <AnchorPane fx:id="visor" layoutX="0.0" layoutY="22.0" prefHeight="578.0" prefWidth="800.0" />
   </children>
   <stylesheets>
     <URL value="@../guifx/NiconImageStyle.css" />

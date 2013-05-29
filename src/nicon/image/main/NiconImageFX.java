@@ -23,18 +23,30 @@ import nicon.image.gui.JNiconImage;
  * 
  */
 public class NiconImageFX extends Application {
+    public static Stage primaryStage;
     
     @Override
-    public void start(final Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws Exception{
+    primaryStage = stage;
     Parent root = FXMLLoader.load(getClass().getResource("NiconImageFXML.fxml"));
     Scene scene = new Scene(root);
+    
     primaryStage.setScene(scene);
+    primaryStage.setMinWidth(640);
+    primaryStage.setMinHeight(480);
+    
+    
     primaryStage.show();
+    
+    
     
     primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
           @Override
+          
           public void handle(WindowEvent we) {
-          if(we.isConsumed()==false){primaryStage.close();
+         
+              
+              if(we.isConsumed()==false){primaryStage.close();
           System.exit(0);}
           System.out.println(we.toString());
           System.out.println("Stage is closing");
