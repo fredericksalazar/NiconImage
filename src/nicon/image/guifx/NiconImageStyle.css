@@ -10,4 +10,51 @@
     -fx-background-color:#333333;
     
 }
+.zoomMas{
+    -fx-background-image: url("zoommas.png");
+    -fx-text-fill: #ffffff;
+    -Fx-font-weight: bold;
+    -fx-border-radius:   8px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: 0,2;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 5px 5px 5px;    
+    
+}
 
+.zoomMas:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+.zoomMenos{
+    -fx-background-image: url("zoommenos.png");
+       -fx-text-fill: #ffffff;
+    -Fx-font-weight: bold;
+    -fx-border-radius:   8px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: 0,2;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 5px 5px 5px;    
+    
+}
+.zoomMenos:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+.zoomRest{
+    -fx-background-image: url("zoomrest.png");
+       -fx-text-fill: #ffffff;
+    -Fx-font-weight: bold;
+    -fx-border-radius:   8px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: 0,2;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 5px 5px 5px;    
+    
+}
+.zoomRest:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
