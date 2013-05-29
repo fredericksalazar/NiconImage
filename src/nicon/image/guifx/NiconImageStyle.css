@@ -58,3 +58,52 @@
 .zoomRest:hover {
  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
+
+.CloserB{
+    -fx-background-image: url("closer.png");
+       -fx-text-fill: #ffffff;
+    -Fx-font-weight: bold;
+    -fx-border-radius:   8px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: 0,2;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 5px 5px 5px;    
+    
+}
+.CloserB:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+.rotI{
+    -fx-background-image: url("rotI.png");
+       -fx-text-fill: #ffffff;
+    -Fx-font-weight: bold;
+    -fx-border-radius:   8px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: 0,2;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 5px 5px 5px;    
+    
+}
+.rotI:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+
+.rotD{
+    -fx-background-image: url("rotD.png");
+       -fx-text-fill: #ffffff;
+    -Fx-font-weight: bold;
+    -fx-border-radius:   8px;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: 0,2;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 5px 5px 5px;    
+    
+}
+.rotD:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}

@@ -14,6 +14,7 @@
         <Menu mnemonicParsing="false" text="NiconImage">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#OpenImage" text="Abrir Imagen..." />
+            <MenuItem mnemonicParsing="false" onAction="#OpenFolder" text="Abrir Carpeta..." />
             <MenuItem mnemonicParsing="false" text="Close" />
           </items>
         </Menu>

@@ -5,21 +5,17 @@
 package nicon.image.guifx.Util;
 
 import java.io.File;
-import javafx.stage.FileChooser;
+import javafx.stage.DirectoryChooser;
 
 /**
  *
  * @author Dony
  */
-public class coreImageChooser{
-private FileChooser chooser = new FileChooser();  
+public class coreImageFolderChooser {
+private DirectoryChooser chooser;  
 public String path;
-public coreImageChooser(){
-chooser = new FileChooser();
-
-//Extention filter
-FileChooser.ExtensionFilter extentionFilter = new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg","*.gif",".bmp");
-chooser.getExtensionFilters().add(extentionFilter);
+public coreImageFolderChooser(){
+chooser = new DirectoryChooser();
 
 //Set to user directory or go to default if cannot access
 String userDirectoryString = System.getProperty("user.home");
@@ -30,7 +26,7 @@ if(!userDirectory.canRead()) {
 chooser.setInitialDirectory(userDirectory);
 
 //Choose the file
-File chosenFile = chooser.showOpenDialog(null);
+File chosenFile = chooser.showDialog(null);
 //Make sure a file was selected, if not return default
 
 if(chosenFile != null) {
@@ -39,5 +35,5 @@ if(chosenFile != null) {
     //default return value
     path = null;
 }
-}    
+}        
 }
