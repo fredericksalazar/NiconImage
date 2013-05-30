@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -55,7 +55,8 @@ private AnchorPane transitor= new AnchorPane();
 private AnchorPane primary;
 @FXML
 private AnchorPane visor;
-
+@FXML
+private ScrollPane scroll;
     
 @FXML 
 private void OpenImage(ActionEvent event){
@@ -232,7 +233,7 @@ AnchorPane.setLeftAnchor(transitor, 0.0);
 AnchorPane.setRightAnchor(transitor, 0.0);
 
 visor.getChildren().add(transitor);
-Image img= new Image("file:"+a,0,visor.getHeight(), true, true);
+Image img= new Image("file:"+a,0,primary.getHeight(), true, true);
 viewer.setImage(img);
 viewer.setPreserveRatio(true);
 viewer.setFitHeight(0);
@@ -320,7 +321,8 @@ imgName.setTextFill(Color.web("#FFFFFF"));
 imgName.setStyle("-fx-background-color:rgba(0,0,0,255);");
 BPane.getChildren().add(imgName);
 
-
+scroll.setHvalue(0);
+scroll.setVvalue(0);
 }
 }
 
@@ -328,9 +330,10 @@ BPane.getChildren().add(imgName);
 
 private void ClearPanels(){
 primary.getChildren().removeAll(BPane);
-BPane.getChildren().removeAll(zoomMa,zoomMe,zoomRe,closeV,imgName,rotI,rotD);
 visor.getChildren().clear();
-
+transitor.getChildren().removeAll(viewer);
+visor.getChildren().removeAll(transitor);
+BPane.getChildren().removeAll(zoomMa,zoomMe,zoomRe,closeV,imgName,rotI,rotD);
 
 }
 

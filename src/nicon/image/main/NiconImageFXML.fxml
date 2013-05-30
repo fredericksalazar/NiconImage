@@ -25,7 +25,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <ScrollPane prefHeight="578.0" prefWidth="800.0" styleClass="primaryAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
+    <ScrollPane fx:id="scroll" prefHeight="578.0" prefWidth="800.0" styleClass="primaryAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
       <content>
         <AnchorPane fx:id="visor" prefHeight="577.0" prefWidth="799.0" styleClass="primaryAnchorPane">
           <stylesheets>
