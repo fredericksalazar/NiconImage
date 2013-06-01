@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.File;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +34,7 @@ import nicon.image.core.NiconImageCore;
 import nicon.image.core.NiconImageData;
 import nicon.image.core.NiconImageViewer;
 import nicon.image.core.conf.NiconImageConf;
+import nicon.image.util.NiconImageObject;
 
 /**
  * JNiconImage es la interfaz grafica principal de todo el software de
@@ -73,7 +75,7 @@ public class JNiconImage extends JFrame implements ActionListener{
     
     private File selectedFile;
     private int index=-1;
-    private File[] listFiles;
+    private List<NiconImageObject> listFiles;
     private FilterImageExtension filer;
     
     public JNiconImage(){
@@ -225,19 +227,22 @@ public class JNiconImage extends JFrame implements ActionListener{
      * vector con los comandos next and previos.
      */
     private void openDirectory(){ 
-        filer= new FilterImageExtension();
-        selectedFile=niconImage.openImageDirectory();
-        System.out.println("Direcotrio seleccionado: "+selectedFile.getPath());
-        listFiles = selectedFile.listFiles(filer);
-        System.out.println("Total archivo de imagen cargados: "+listFiles.length);
+        niconImage.openImageDirectory();
+        listFiles = niconImage.getListImages();
+        System.out.println("Total archivo de imagen cargados: "+listFiles.size());
         nextImage();
     }
     
     private void nextImage(){
+        panelViewer.cleanNiconViewer();
+        listFiles = niconImage.getListImages();
         try{
-            if(index<listFiles.length){
+            if(index<listFiles.size()){
                 index++;
-                selectedFile=listFiles[index];
+                NiconImageObject img;
+                img= (NiconImageObject) listFiles.get(index);
+                
+                selectedFile = new File(img.getPath());
                 titleImage.setText(selectedFile.getName());
                 image=new ImageIcon(selectedFile.getPath());
                 panelViewer.setImage(image);  
@@ -245,18 +250,22 @@ public class JNiconImage extends JFrame implements ActionListener{
             }
         }catch(Exception e ){
             System.err.println("Ocurrio un error al obtener la imagen:\n"+e);
-            index=listFiles.length-1;
+            index=listFiles.size()-1;
         }
     }
     
     public void previosImage(){
         try{
-           if(index<listFiles.length){
+           if(index<listFiles.size()){
                 index--;
-                selectedFile=listFiles[index];
+                 NiconImageObject img;
+                img= (NiconImageObject) listFiles.get(index);
+                
+                selectedFile = new File(img.getPath());
                 titleImage.setText(selectedFile.getName());
                 image=new ImageIcon(selectedFile.getPath());
-                panelViewer.setImage(image);                 
+                panelViewer.setImage(image);  
+                panelViewer.cleanNiconViewer();           
             } else{
                 index=0;
             } 

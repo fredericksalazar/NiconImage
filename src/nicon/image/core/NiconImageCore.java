@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URI;
+import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -36,7 +37,7 @@ public class NiconImageCore {
 
     private File selectedFile;
     private File renameFile;
-    
+    private NiconImageFolder selectedFolder;
     private JFileChooser fileChooser;    
     private FileNameExtensionFilter filter;
     
@@ -53,7 +54,7 @@ public class NiconImageCore {
     public NiconImageCore() {
         fileChooser = new JFileChooser();
         filter = new FileNameExtensionFilter(
-                "JPG & GIF Images", "jpg", "gif", "png");
+                "JPG & GIF Images", "*.jpg", "*.gif", "*.png","*.bmp");
     }
 
     /**
@@ -91,14 +92,24 @@ public class NiconImageCore {
      * 
      * @return File selectedFile (directorio).
      */
-    public File openImageDirectory() {
+    public void openImageDirectory() {
+        selectedFolder = null;
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         value = fileChooser.showOpenDialog(null);
-        
-            if (value == JFileChooser.APPROVE_OPTION) {
+        if (value == JFileChooser.APPROVE_OPTION) {
                 selectedFile = fileChooser.getSelectedFile();
-            }
-        return selectedFile;
+            
+        selectedFolder = new NiconImageFolder(selectedFile);
+        selectedFolder.start();
+        while(selectedFolder.Estado == true){
+        System.out.println("Cargando ...");
+        }
+        }  
+        
+    }
+    
+    public List getListImages(){
+    return selectedFolder.getImagesList();
     }
 
     /**
@@ -159,6 +170,11 @@ public class NiconImageCore {
         if (file.getName().endsWith(".jpg") || file.getName().endsWith(".jpeg")) {
             extensionFile = ".jpg";
         }
+        if (file.getName().endsWith(".bmp")) {
+            extensionFile = ".bmp";
+        }
+        
+        
         return extensionFile;
     }
     

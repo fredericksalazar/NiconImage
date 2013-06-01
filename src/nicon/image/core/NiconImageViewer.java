@@ -72,8 +72,11 @@ public class NiconImageViewer extends JPanel {
     }
     
     public void cleanNiconViewer(){
+        NiconFace.setVisible(false);
+        NiconWeb.setVisible(false);
         this.remove(NiconFace);
-        this.remove(NiconWeb);        
+        this.remove(NiconWeb);
+        
     }
 
     public void setImage(ImageIcon image) {
